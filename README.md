@@ -1,6 +1,24 @@
+# 无符号数字类型[![](https://jitpack.io/v/xuejike/unsigned-number.svg)](https://jitpack.io/#xuejike/unsigned-number)
+
 java 无符号数字类型处理
 支持 无符号数字类型转byte数组(Big Endian  和 Little Endian)
 默认采用 Big Endian 模式,可以通过参数设置采用的编码模式
+```xml
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+	
+	
+	<dependency>
+    	    <groupId>com.github.xuejike</groupId>
+    	    <artifactId>unsigned-number</artifactId>
+    	    <version>0.1</version>
+    	</dependency>
+```
+
 
 ```java
         System.out.println(new UByte(0xff));  // 255
