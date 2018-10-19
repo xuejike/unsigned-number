@@ -4,8 +4,8 @@ package com.github.xuejike.unsigned.number;
  * @author xuejike
  */
 public class UInt extends UNumber{
-    public static final long MIN_VALUE = 0x00000000;
-    public static final long MAX_VALUE = 0xFFFFFFFF;
+    public static final long MIN_VALUE = 0x00000000L;
+    public static final long MAX_VALUE = 0xFFFFFFFFL;
     private  int signed;
 
     public UInt(int signed) {
@@ -15,6 +15,12 @@ public class UInt extends UNumber{
         this.signed = (int) data;
     }
     public UInt(byte[] data){
+        this(data,EncodeType.BigEndian);
+    }
+    public UInt(byte[] data,EncodeType encodeType){
+        if (encodeType == EncodeType.LittleEndian){
+            data = reversalBytes(data);
+        }
         if (data == null ){
             throw new NullPointerException("data is null");
         }

@@ -9,16 +9,16 @@ public abstract class UNumber {
     private static final char[] HEX_CHAR = {'0', '1', '2', '3', '4', '5',
             '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
     public abstract byte[] getBytes();
-
-    /**
-     * LittleEndian 模式编码
-     * @return
-     */
-    public byte[] getLittleEndianBytes(){
+    public byte[] getBytes(EncodeType encodeType){
         byte[] bytes = getBytes();
-
-        return  reversalBytes(bytes);
+        if (encodeType == EncodeType.BigEndian){
+            return bytes;
+        }else{
+            return  reversalBytes(bytes);
+        }
     }
+
+
     public byte[] reversalBytes(byte[] bytes){
 
         if (bytes.length < 2){
@@ -32,8 +32,8 @@ public abstract class UNumber {
         }
         return  bytes;
     }
-    public String toHexString(){
-        byte[] bytes = getBytes();
+    public String toHexString(EncodeType encodeType){
+        byte[] bytes = getBytes(encodeType);
         char[] buf = new char[bytes.length * 2];
         int index = 0;
         for(byte b : bytes) {
@@ -44,6 +44,10 @@ public abstract class UNumber {
         return new String(buf);
 
     }
+    public String toHexString(){
+        return toHexString(EncodeType.BigEndian);
+    }
+
     public abstract int intValue();
     public abstract long longValue();
 

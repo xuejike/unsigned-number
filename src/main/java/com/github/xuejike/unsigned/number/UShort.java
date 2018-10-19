@@ -11,8 +11,13 @@ public class UShort extends UNumber {
         this.signed = signed;
     }
 
-
     public UShort(byte[] data){
+        this(data,EncodeType.BigEndian);
+    }
+    public UShort(byte[] data,EncodeType encodeType){
+        if (encodeType == EncodeType.LittleEndian){
+            data = reversalBytes(data);
+        }
         if (data == null){
             throw new NullPointerException("data is null");
         }

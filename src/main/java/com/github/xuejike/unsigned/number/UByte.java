@@ -11,6 +11,9 @@ public class UByte extends UNumber {
     public UByte(byte signed) {
         this.signed = signed;
     }
+    public UByte(int data){
+        this.signed= (byte) data;
+    }
 
     @Override
     public int intValue(){
